@@ -1,21 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
-    <title>Document</title>
-</head>
-<body>
-    <h1 class="home">Olá mundo1235</h1>   
-    {% if user.is_authenticated %}
-        <p> Olá {{ user.username }}
-        <a href="{% url 'logout' %}">Sair</a>               
-    {% else %}
-        <a href="{% url 'login' %}">Entrar</a>        
-    {% endif %}
+{% extends 'base.html' %}
+{% load bootstrap %}
 
-    
-</body>
-</html>
+{% block title %} Seja Bem vindo {% endblock%}
+
+{% block main %}
+    </br></br>
+    <div class="row">
+        <div class="col-sm"><h2 class="home">Bem vindo a gestão de clientes</h2></div>
+        <div class="col-6">         
+        </div>
+        <div class="col-6"></div>                
+    </div>
+    <span><a href="{% url 'person_list' %}">Gerenciador de Clientes</a></span>
+{% endblock %}  
