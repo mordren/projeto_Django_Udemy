@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 
 class Documento(models.Model):
@@ -21,6 +22,12 @@ class Person(models.Model):
     def __str__(self):
         return self.first_name+' '+self.last_name
     
+class Produto(models.Model):    
+    valor = models.DecimalField(max_digits=8, decimal_places=2)
+    descricao = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.descricao
     
 class Venda(models.Model):
     numero = models.CharField(max_length=30)
@@ -29,6 +36,9 @@ class Venda(models.Model):
     desconto = models.DecimalField(max_digits=8, decimal_places=2)
     #Aqui não vai poder deletar a pessoa sem deletar antes as vendas, está protegido.
     pessoa = models.ForeignKey(Person, null=True, blank=True, on_delete=models.PROTECT)
+    produtos = models.ManyToManyField(Produto, blank=True)
     
     def __str__(self):
         return self.numero
+    
+
