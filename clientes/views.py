@@ -43,5 +43,5 @@ def persons_update(request, id):
 def persons_delete(request, id):
     person = get_object_or_404(Person, pk=id)
     #nesse eu envio uma pessoa para criar uma instância lá no template, para decidir se vou deletar.        
-    person.delete()            
-    return redirect('person_list')    
+    person.delete()
+    return redirect('person_list')
