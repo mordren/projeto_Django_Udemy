@@ -40,5 +40,3 @@ class Venda(models.Model):
     
     def __str__(self):
         return self.numero
-    
-
