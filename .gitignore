@@ -1,3 +1,4 @@
+.env
 # See the name for you IDE
 *.idea
 # If you are using sqlite3
@@ -5,4 +6,4 @@
 # Name of your virtuan env
 *pyc
 MEDIA/
-.env
+
