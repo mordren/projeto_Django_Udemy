@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Novo Cliente {% endblock%}
+
+{% block main %}    
+    <p>hello, world</p>
+    <!-- aqui nós pegamos o objeto default do método object_list que provê todos do model-->
+    {% for person in object_list %}
+        <a href="{% url 'person_detail' person.id %}">{{ person }}</a>
+        <br/>
+    {% endfor %}
+{% endblock %}

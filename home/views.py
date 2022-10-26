@@ -5,7 +5,19 @@ from django.views.generic.base import TemplateView
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.views import View
 
+
+
+# Create your views here.
+@login_required(login_url='../../login/')
+def home(request):         
+    #import pdb; pdb.set_trace()
+    return render(request, 'home/home.html')
+
+def my_logout(request):
+    logout(request)
+    return redirect('home')
 
 class HomePageView(TemplateView):
     #necessário trocar o template_name para funcionar
@@ -17,13 +29,11 @@ class HomePageView(TemplateView):
         #envio ao template através do context alguma informação.        
         context['test'] = 'asdrubal'
         return context
-
-# Create your views here.
-@login_required(login_url='../../login/')
-def home(request):         
-    #import pdb; pdb.set_trace()
-    return render(request, 'home/home.html')
-
-def my_logout(request):
-    logout(request)
-    return redirect('home')
+    
+class MyView(View):
+    def get(self, request, *arg, **kwargs):
+        return render(request, 'home/home3.html')
+    
+    def post(self, request, *arg, **kwargs):
+        return HttpResponse('Post')
+    

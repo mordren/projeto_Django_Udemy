@@ -1,7 +1,12 @@
+from msilib.schema import ListView
+from time import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from .models import Person
 from .forms import PersonForm
+from django.utils import timezone
 
 # Create your views here.
 def hello(request):
@@ -45,3 +50,9 @@ def persons_delete(request, id):
     #nesse eu envio uma pessoa para criar uma instância lá no template, para decidir se vou deletar.        
     person.delete()
     return redirect('person_list')
+
+class ModelListView(ListView):
+    model = Person
+    
+class PersonDetail(DetailView):    
+    model = Person        

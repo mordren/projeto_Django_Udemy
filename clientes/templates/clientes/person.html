@@ -10,8 +10,7 @@
         <ul class="list-group">
         {% for person in persons %}
             <li class="list-group-item">
-            <a href="{% url 'persons_update' person.id %}">{{ person.first_name }}</a>
-            
+            <a href="{% url 'persons_update' person.id %}">{{ person.first_name }}</a>            
             <a href="{% url 'persons_delete' person.id %}"  onclick="return confirm('Você tem certeza que quer deletar ?')"><i class="fa-solid fa-trash icon_delete"></i></a>
             </li></br>
         {% endfor %}

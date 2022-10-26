@@ -1,4 +1,3 @@
-from pyexpat import model
 from django.db import models
 
 class Documento(models.Model):
@@ -41,4 +40,4 @@ class Venda(models.Model):
     
     #TODO: refatorar para usar thredes
     def __str__(self):
-        return self.numeropy
+        return self.numero
