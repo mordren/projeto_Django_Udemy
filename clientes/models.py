@@ -7,7 +7,6 @@ class Documento(models.Model):
     def __str__(self):
         return self.num_doc
     
-
 class Person(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -28,7 +27,9 @@ class Produto(models.Model):
     
     def __str__(self):
         return self.descricao
-    
+
+# FIXME: teste
+
 class Venda(models.Model):
     numero = models.CharField(max_length=30)
     valor = models.DecimalField(max_digits=8, decimal_places=2)
@@ -38,5 +39,6 @@ class Venda(models.Model):
     pessoa = models.ForeignKey(Person, null=True, blank=True, on_delete=models.PROTECT)
     produtos = models.ManyToManyField(Produto, blank=True)
     
+    #TODO: refatorar para usar thredes
     def __str__(self):
-        return self.numero
+        return self.numeropy

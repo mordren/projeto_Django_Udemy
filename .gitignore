@@ -6,4 +6,5 @@
 # Name of your virtuan env
 *pyc
 MEDIA/
+.vscode/
 
