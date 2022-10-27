@@ -3,11 +3,12 @@
 
 {% block title %} Novo Cliente {% endblock%}
 
-{% block main %}    
-    <p>hello, world</p>
+{% block main %}        
     <!-- aqui nós pegamos o objeto default do método object_list que provê todos do model-->    
     <br/>        
     <p>Nome Completo: {{ object }}</p>    
     <p>Idade: {{ object.age }}</p>
-    <p>Salário: {{ object.salary }}</p>
+    <p>Salário: {{ object.salary }}</p>    
+    <a href="{% url 'person_update' object.id %}">Atualizar</a>
+    <a href="{% url 'person_delete' object.id %}">Deletar</a>
 {% endblock %}

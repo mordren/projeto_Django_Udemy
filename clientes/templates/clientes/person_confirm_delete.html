@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Deletar Clientes {% endblock%}
+
+{% block main %}
+    <h1>Tem certeza que deseja deletar? {{ person.first_name }}</h1>
+    <form method="post">{% csrf_token %}        
+        {{ form }}
+        <input type="submit" class="btn btn-danger" value="Confirm">
+    </form>
+{% endblock %}
+

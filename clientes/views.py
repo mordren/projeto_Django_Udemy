@@ -2,11 +2,13 @@ from msilib.schema import ListView
 from time import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Person
 from .forms import PersonForm
 from django.utils import timezone
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
 def hello(request):
@@ -42,7 +44,7 @@ def persons_update(request, id):
         form.save()
         return redirect('person_list')
     #se não ele cria o formulário para ser populado.    
-    return render(request, 'clientes/person_form.html', {'form': form})
+    return render(request, 'clientes/person_form2.html', {'form': form})
 
 @login_required(login_url='../../login/')
 def persons_delete(request, id):
@@ -56,3 +58,19 @@ class ModelListView(ListView):
     
 class PersonDetail(DetailView):    
     model = Person        
+    
+class PersonCreate(CreateView):
+    model = Person
+    # aqui são listados os campos que eu quero criar o model
+    fields = ['first_name', 'last_name', 'age', 'salary', 'bio', 'photo']
+    success_url = reverse_lazy('person_list2')
+    
+class PersonUpdate(UpdateView):
+    model = Person
+    fields = ['first_name', 'last_name', 'age', 'salary', 'bio', 'photo']
+    success_url = reverse_lazy('person_list2')
+    
+class PersonDelete(DeleteView):
+    #apenas colocar o delete    
+    model = Person    
+    success_url = reverse_lazy('person_list2')
