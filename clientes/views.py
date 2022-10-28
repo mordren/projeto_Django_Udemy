@@ -74,3 +74,8 @@ class PersonDelete(DeleteView):
     #apenas colocar o delete    
     model = Person    
     success_url = reverse_lazy('person_list2')
+    
+    def get_success_url(self):
+        #aqui podemos fazer o que quiser com o usuário;
+        #podemos fazer alguma verificação à mais;        
+        success_url = reverse_lazy('person_list2')

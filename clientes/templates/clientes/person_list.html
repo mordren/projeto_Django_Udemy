@@ -9,5 +9,10 @@
     {% for person in object_list %}
         <a href="{% url 'person_detail' person.id %}">{{ person }}</a>
         <br/>
-    {% endfor %}
+    {% endfor %}   
 {% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}
+
