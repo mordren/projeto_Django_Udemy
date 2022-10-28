@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load filters %}
+{% load my_tags %}
 
 {% block title %} Administração de Clientes {% endblock%}
 
@@ -12,11 +14,26 @@
             <li class="list-group-item">
             <a href="{% url 'persons_update' person.id %}">{{ person.first_name }}</a>            
             <a href="{% url 'persons_delete' person.id %}"  onclick="return confirm('Você tem certeza que quer deletar ?')"><i class="fa-solid fa-trash icon_delete"></i></a>
-            </li></br>
+            </li></br>            
         {% endfor %}
         </ul>
     </div>
     <a href="{% url 'persons_new' %}" class="btn btn-primary" >Novo Cliente</a>
+
+    <br/>
+    {% current_time "%Y-%m-%d %I:%M %p" as the_time %}
+    {{ the_time }}
+
+    <!-- exemplo de filter -->
+    <!--
+    <br/>
+    {{ "asdasdsa"|my_filter }}
+    <br/>
+    {{ 123.582224|arredondar:2}}
+
+    -->
+
+    {% current_time "" %}
 {% endblock %}
 {% block footer %}
     {% include 'footer.html' %}

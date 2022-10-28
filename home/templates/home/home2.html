@@ -12,4 +12,14 @@
         <div class="col-6"></div>                
     </div>
     <span><a href="{% url 'person_list' %}">Gerenciador de Clientes</a></span>
+
+    {% filter force_escape|lower %}    
+    Esse texto está em minúsculo
+    {% endfilter %}
+    <br/>
+    {% filter force_escape|upper %}
+    Esse texto está em minúsculo 
+    {% endfilter %}
+    <br/>
+    {% now "jS F Y H:M" %}
 {% endblock %}  

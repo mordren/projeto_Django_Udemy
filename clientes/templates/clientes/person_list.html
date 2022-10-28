@@ -3,13 +3,17 @@
 
 {% block title %} Novo Cliente {% endblock%}
 
-{% block main %}    
-    <p>hello, world</p>
+{% block main %}        
     <!-- aqui nós pegamos o objeto default do método object_list que provê todos do model-->
     {% for person in object_list %}
         <a href="{% url 'person_detail' person.id %}">{{ person }}</a>
         <br/>
-    {% endfor %}   
+    <!-- aqui verifica-se não tem nenhum é passada essa resposta. -->
+    {% empty %}
+        <p>Não tem clientes cadastrados </p>
+        <a href="{% url 'persons_new' %}" >Cadastrar Novos </a>
+    {% endfor %}      
+
 {% endblock %}
 
 {% block footer %}
