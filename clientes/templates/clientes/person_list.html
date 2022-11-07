@@ -5,14 +5,21 @@
 
 {% block main %}        
     <!-- aqui nós pegamos o objeto default do método object_list que provê todos do model-->
+    <br/><br/>
+    <h3>Lista de todos clientes</h3>
+    <ul class="list-group">
     {% for person in object_list %}
-        <a href="{% url 'person_detail' person.id %}">{{ person }}</a>
-        <br/>
+        <li class="list-group-item">
+        <a href="{% url 'person_update' person.id %}">{{ person.first_name|capfirst }}
+            {{person.last_name|capfirst}} </a>            
+        <a href="{% url 'persons_delete' person.id %}"  onclick="return confirm('Você tem certeza que quer deletar ?')"><i class="fa-solid fa-trash icon_delete"></i></a>
+        </li></br>            
     <!-- aqui verifica-se não tem nenhum é passada essa resposta. -->
     {% empty %}
         <p>Não tem clientes cadastrados </p>
-        <a href="{% url 'persons_new' %}" >Cadastrar Novos </a>
+        <a href="{% url 'person_create' %}" >Cadastrar Novos </a>
     {% endfor %}      
+    </ul>
 
 {% endblock %}
 

@@ -3,9 +3,10 @@ from time import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from .models import Person
+from .models import Person, Produto
 from .forms import PersonForm
 from django.utils import timezone
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -62,12 +63,12 @@ class PersonDetail(DetailView):
 class PersonCreate(CreateView):
     model = Person
     # aqui são listados os campos que eu quero criar o model
-    fields = ['first_name', 'last_name', 'age', 'salary', 'bio', 'photo']
+    fields = ['first_name', 'last_name', 'age', 'salary', 'bio', 'photo', 'doc']
     success_url = reverse_lazy('person_list2')
     
 class PersonUpdate(UpdateView):
     model = Person
-    fields = ['first_name', 'last_name', 'age', 'salary', 'bio', 'photo']
+    fields = ['first_name', 'last_name', 'age', 'salary', 'bio', 'photo', 'doc']
     success_url = reverse_lazy('person_list2')
     
 class PersonDelete(DeleteView):
@@ -79,3 +80,17 @@ class PersonDelete(DeleteView):
         #aqui podemos fazer o que quiser com o usuário;
         #podemos fazer alguma verificação à mais;        
         success_url = reverse_lazy('person_list2')
+        
+        
+class ProdutoBulk(View):
+    def get(self, request):
+        produtos = ['Banana', 'Maca', 'Laranaja','Limão', 'Melancia']
+        list_produtos = []
+        i = 1
+        for produto in produtos:
+            i = i+2*3
+            p = Produto(descricao=produto, valor=i)
+            list_produtos.append(p)
+        
+        Produto.objects.bulk_create(list_produtos)
+        return redirect('admin')        
