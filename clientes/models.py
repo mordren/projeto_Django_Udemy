@@ -39,6 +39,7 @@ class Venda(models.Model):
     #Aqui não vai poder deletar a pessoa sem deletar antes as vendas, está protegido.
     pessoa = models.ForeignKey(Person, null=True, blank=True, on_delete=models.PROTECT)
     produtos = models.ManyToManyField(Produto, blank=True)
+    nfe_emitida = models.BooleanField(default=False)
     
     def get_total(self):
         tot = 0
